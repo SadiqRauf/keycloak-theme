@@ -1,0 +1,364 @@
+/* RareOS login look — targets Keycloakify stable kc* class keys (doUseDefaultCss: false). */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+body {
+    margin: 0;
+}
+
+:root {
+    --rareos-bg: #f9fafb;
+    --rareos-card: #ffffff;
+    --rareos-blue: #2563eb;
+    --rareos-blue-hover: #1d4ed8;
+    --rareos-text: #111827;
+    --rareos-muted: #6b7280;
+    --rareos-border: #e5e7eb;
+    --rareos-link-red: #dc2626;
+    --rareos-radius: 12px;
+    --rareos-input-radius: 6px;
+}
+
+.rareos-app {
+    min-height: 100vh;
+    margin: 0;
+    padding: 2.5rem 1.25rem 2rem;
+    box-sizing: border-box;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    background: var(--rareos-bg);
+    color: var(--rareos-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rareos-brand {
+    margin: 0 0 1.75rem;
+    font-size: 2.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--rareos-blue);
+    text-align: center;
+}
+
+.rareos-footer {
+    margin-top: 2rem;
+    font-size: 0.8125rem;
+    color: var(--rareos-text);
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.rareos-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.rareos-footer a:hover {
+    text-decoration: underline;
+}
+
+.rareos-footer-sep {
+    opacity: 0.45;
+    user-select: none;
+}
+
+/* Hide Keycloak header (realm title); we use .rareos-brand instead */
+.rareos-app #kc-header {
+    display: none;
+}
+
+/* Hide realm language / locale switcher */
+.rareos-app #kc-locale,
+.rareos-app .kcLocaleMainClass {
+    display: none !important;
+}
+
+.rareos-app .kcLoginClass {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.rareos-app .kcFormCardClass {
+    background: var(--rareos-card);
+    border-radius: var(--rareos-radius);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.06);
+    padding: 2rem 2rem 1.75rem;
+    border: 1px solid var(--rareos-border);
+}
+
+.rareos-app .kcFormHeaderClass {
+    margin-bottom: 1.5rem;
+}
+
+.rareos-app #kc-page-title {
+    margin-bottom: 2.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--rareos-text);
+    text-align: center;
+
+}
+
+.rareos-app .kcLabelClass {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--rareos-muted);
+}
+
+.rareos-app .kcFormGroupClass {
+    margin-bottom: 1.1rem;
+}
+
+.rareos-app .kcInputClass {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 0.85rem;
+    font-size: 1rem;
+    border: 1px solid var(--rareos-border);
+    border-radius: var(--rareos-input-radius);
+    background: #fff;
+    color: var(--rareos-text);
+    font-family: inherit;
+    background-color: #f9fafb;
+}
+
+.rareos-app .kcInputClass:focus {
+    outline: none;
+    border-color: var(--rareos-blue);
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.15);
+}
+
+.rareos-app .kcInputGroup {
+    display: flex;
+    align-items: stretch;
+}
+
+.rareos-app .kcInputGroup .kcInputClass {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    flex: 1;
+}
+
+.rareos-app .kcFormPasswordVisibilityButtonClass {
+    border: 1px solid var(--rareos-border);
+    border-left: none;
+    border-radius: 0 var(--rareos-input-radius) var(--rareos-input-radius) 0;
+    background: #eff1f3;
+    padding: 0 0.65rem;
+    cursor: pointer;
+    color: var(--rareos-muted);
+}
+
+.rareos-app .kcFormPasswordVisibilityButtonClass:hover {
+    background: #f3f4f6;
+}
+
+/* Eye icons (PatternFly/FA not loaded when doUseDefaultCss is false) */
+.rareos-app .kcFormPasswordVisibilityButtonClass i {
+    display: block;
+    width: 1.35rem;
+    height: 1.35rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.25rem 1.25rem;
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+}
+
+.rareos-app i.kcFormPasswordVisibilityIconShow {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z'/%3E%3Cpath d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3C/svg%3E");
+}
+
+.rareos-app i.kcFormPasswordVisibilityIconHide {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 01-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21M15.536 8.464l-3.65 3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88'/%3E%3C/svg%3E");
+}
+
+.rareos-app .kcFormPasswordVisibilityButtonClass:hover i.kcFormPasswordVisibilityIconShow,
+.rareos-app .kcFormPasswordVisibilityButtonClass:hover i.kcFormPasswordVisibilityIconHide {
+    opacity: 0.85;
+}
+
+.rareos-app .kcFormSettingClass.kcFormGroupClass {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.rareos-app .kcFormSettingClass .checkbox label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.9375rem;
+    color: var(--rareos-text);
+    cursor: pointer;
+}
+
+.rareos-app .kcFormSettingClass .checkbox input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--rareos-blue);
+    border-radius: 4px;
+}
+
+.rareos-app .kcFormOptionsWrapperClass {
+    margin-left: auto;
+}
+
+.rareos-app .kcFormOptionsWrapperClass a {
+    color: var(--rareos-link-red);
+    font-size: 0.9375rem;
+    text-decoration: underline;
+}
+
+.rareos-app .kcFormOptionsWrapperClass a:hover {
+    color: #b91c1c;
+}
+
+/* Primary submit */
+.rareos-app #kc-form-buttons {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+}
+
+.rareos-app #kc-login.kcButtonClass {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: var(--rareos-input-radius);
+    background: var(--rareos-blue);
+    color: #fff;
+    cursor: pointer;
+    margin-top: 0.25rem;
+}
+
+.rareos-app #kc-login.kcButtonClass:hover:not(:disabled) {
+    background: var(--rareos-blue-hover);
+}
+
+.rareos-app #kc-login.kcButtonClass:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Registration block */
+.rareos-app #kc-info {
+    position: relative;
+    z-index: 2;
+    margin-top: 1.75rem;
+    padding-top: 0;
+    border: none;
+}
+
+.rareos-app #kc-registration {
+    text-align: center;
+}
+
+.rareos-app #kc-registration span {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+}
+
+.rareos-app #kc-registration span > a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-align: center;
+    text-decoration: none;
+    color: var(--rareos-text);
+    border: 1px solid var(--rareos-border);
+    border-radius: var(--rareos-input-radius);
+    background: #fff;
+}
+
+.rareos-app #kc-registration span > a:hover {
+    background: #f9fafb;
+}
+
+.rareos-app #kc-registration span {
+    font-size: 0.9375rem;
+    color: var(--rareos-text);
+}
+
+/* Hide “Don’t have an account?” + Sign Up on tablet and mobile */
+@media (max-width: 930px) {
+    .rareos-app #kc-info {
+        display: none !important;
+    }
+}
+
+/* Alerts */
+.rareos-app .kcAlertClass {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--rareos-input-radius);
+    font-size: 0.875rem;
+}
+
+.rareos-app .alert-error,
+.rareos-app .pf-m-danger {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.rareos-app .alert-success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
+.rareos-app .alert-warning {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+}
+
+.rareos-app .alert-info {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e40af;
+}
+
+.rareos-app .kcInputErrorMessageClass {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--rareos-link-red);
+}
+
+/* Locale dropdown — keep readable */
+.rareos-app .kcLocaleMainClass {
+    margin-bottom: 1rem;
+}
+
+.rareos-app .kcLocaleMainClass button {
+    font-family: inherit;
+    font-size: 0.8125rem;
+    border: 1px solid var(--rareos-border);
+    border-radius: 8px;
+    padding: 0.35rem 0.65rem;
+    background: #fff;
+    cursor: pointer;
+}

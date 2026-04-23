@@ -1,0 +1,186 @@
+/*
+ * RareOS registration layout & polish.
+ * Scoped under .register-rareos (form) and .kcFormCardClass:has(#kc-register-form) (card title).
+ * Inter is loaded globally via pages/login/rareos.css.
+ */
+
+/* Slightly wider card than login (440px) for two-column fields */
+.rareos-app .kcLoginClass:has(#kc-register-form) {
+    max-width: 520px;
+}
+
+.kcFormCardClass:has(#kc-register-form) #kc-page-title {
+    text-align: center;
+    width: 100%;
+}
+
+.register-rareos {
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+/* Two-column grid: first/last name, passwords side-by-side; username & email full width */
+.register-rareos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 0.25rem;
+    align-items: start;
+}
+
+.register-rareos > .kcFormGroupClass:has(#firstName) {
+    grid-column: 1;
+}
+
+.register-rareos > .kcFormGroupClass:has(#lastName) {
+    grid-column: 2;
+}
+
+.register-rareos > .kcFormGroupClass:has(#username),
+.register-rareos > .kcFormGroupClass:has(#email) {
+    grid-column: 1 / -1;
+}
+
+.register-rareos > .kcFormGroupClass:has(#password):not(:has(#password-confirm)) {
+    grid-column: 1;
+}
+
+.register-rareos > .kcFormGroupClass:has(#password-confirm) {
+    grid-column: 2;
+}
+
+/* Group headers from user profile (if any) span full width */
+.register-rareos > .kcFormGroupClass:has(.kcContentWrapperClass),
+.register-rareos > .form-group {
+    grid-column: 1 / -1;
+}
+
+.register-rareos .kcLabelClass {
+    color: #111827;
+    font-weight: 500;
+}
+
+/* Label + required asterisk on one row (Keycloakify puts text " *" after the label) */
+.register-rareos .kcLabelWrapperClass {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2rem;
+    margin-bottom: 0.35rem;
+}
+
+.register-rareos .kcLabelWrapperClass .kcLabelClass {
+    display: inline;
+    margin-bottom: 0;
+}
+
+.register-rareos .kcLabelWrapperClass .required {
+    color: #dc2626;
+    margin-left: 0;
+}
+
+.register-rareos > .kcFormGroupClass {
+    margin-bottom: 0.35rem;
+}
+
+.register-rareos .kcInputClass {
+    border-radius: 6px;
+    border-color: #e5e7eb;
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.register-rareos .kcInputClass[aria-invalid="true"] {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 1px rgb(220 38 38 / 0.2);
+}
+
+.register-rareos .kcInputGroup:has(.kcInputClass[aria-invalid="true"]) .kcInputClass,
+.register-rareos .kcInputGroup:has(.kcInputClass[aria-invalid="true"]) .kcFormPasswordVisibilityButtonClass {
+    border-color: #dc2626;
+}
+
+.register-rareos .kcInputErrorMessageClass {
+    display: block;
+    margin-top: 0.35rem;
+    margin-bottom: 0.15rem;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: #dc2626;
+}
+
+.register-rareos .kcInputGroup .kcInputClass {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.register-rareos .kcFormPasswordVisibilityButtonClass {
+    border-radius: 0 6px 6px 0;
+    border-color: #e5e7eb;
+}
+
+/* Footer row: “Already have an account? Login” */
+.register-rareos > .kcFormGroupClass:has(#kc-form-options) {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.register-rareos #kc-form-options {
+    width: 100%;
+    text-align: center;
+}
+
+.register-rareos .register-rareos-account-hint {
+    font-size: 0.9375rem;
+    color: #111827;
+}
+
+.register-rareos .register-rareos-login-link {
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.register-rareos .register-rareos-login-link:hover {
+    text-decoration: underline;
+}
+
+/* Submit */
+.register-rareos > .kcFormGroupClass:has(#kc-form-buttons) {
+    grid-column: 1 / -1;
+    margin-top: 0.35rem;
+}
+
+.register-rareos #kc-form-buttons {
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+.register-rareos #kc-form-buttons .kcButtonClass,
+.register-rareos #kc-form-buttons input[type="submit"],
+.register-rareos #kc-form-buttons button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: #fff;
+    cursor: pointer;
+}
+
+.register-rareos #kc-form-buttons .kcButtonClass:hover:not(:disabled),
+.register-rareos #kc-form-buttons input[type="submit"]:hover:not(:disabled),
+.register-rareos #kc-form-buttons button[type="submit"]:hover:not(:disabled) {
+    background: #1d4ed8;
+}
+
+.register-rareos #kc-form-buttons input:disabled,
+.register-rareos #kc-form-buttons button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
