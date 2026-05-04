@@ -62,21 +62,24 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
     return (
         <div className="rareos-app">
-            <p className="rareos-brand">rareOS</p>
+            <div>
+                <p>Your Comprehensive Guide To Legislative Success</p>
+                <p>People who have committed to a service/advocacy role will tell you that some of the sublimest pleasure they have ever experienced comes in the context of that work. You get way more than you give. - Charles Garfield</p>
+            </div>
+
+            <div>
+            <img 
+                className="rareos-brand" 
+                src="https://app.govbuddy.com/static/img/logo-govbuddy-black.svg" 
+                alt="GovBuddy"
+            />
             <KeycloakifyTemplate {...props} />
             <footer className="rareos-footer">
+            <p className="rareos-copyright">Copyright © 2026 Capitol Enquiry</p>
+            <div className="rareos-footer-links">
+
                 <a
-                    href="https://rareos.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    ©RareOS
-                </a>
-                <span className="rareos-footer-sep" aria-hidden="true">
-                    •
-                </span>
-                <a
-                    href="https://app.rareos.com/terms"
+                    href="https://app.govbuddy.com/about/tos/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -86,13 +89,25 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     •
                 </span>
                 <a
-                    href="https://app.rareos.com/privacy"
+                    href="https://app.govbuddy.com/about/privacy/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Privacy Policy
+                   Privacy Policy
                 </a>
+                <span className="rareos-footer-sep" aria-hidden="true">
+                    •
+                </span>
+                <a
+                    href="https://app.govbuddy.com/contact/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Contact
+                </a>
+                </div>
             </footer>
+            </div>
         </div>
     );
 }

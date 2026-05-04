@@ -155,7 +155,7 @@ export default function LoginPage(props: Props) {
                     <div id="kc-registration">
                         <span>
                             {msg("noAccount")}{" "}
-                            <a tabIndex={8} href={url.registrationUrl}>
+                            <a tabIndex={8} href="https://app.govbuddy.com/plans/">
                                 {msg("doRegister")}
                             </a>
                         </span>
