@@ -11,6 +11,8 @@ import type { I18n } from "../../login/i18n";
 
 type Props = PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>;
 
+const GOVBUDDY_PASSWORD_RESET_URL = "https://app.govbuddy.com/password-reset/";
+
 function PasswordWrapper(props: {
     kcClsx: ReturnType<typeof getKcClsx>["kcClsx"];
     i18n: I18n;
@@ -315,7 +317,7 @@ export default function LoginPage(props: Props) {
                                 <div className={kcClsx("kcFormOptionsWrapperClass")}>
                                     {realm.resetPasswordAllowed && (
                                         <span>
-                                            <a tabIndex={6} href={url.loginResetCredentialsUrl}>
+                                            <a tabIndex={6} href={GOVBUDDY_PASSWORD_RESET_URL}>
                                                 {msg("doForgotPassword")}
                                             </a>
                                         </span>

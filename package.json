@@ -1,7 +1,7 @@
 {
-    "name": "keycloakify-starter",
+    "name": "zammad",
     "version": "0.0.0",
-    "description": "Starter for Keycloakify 11",
+    "description": "Zammad Keycloak login theme (Keycloakify)",
     "repository": {
         "type": "git",
         "url": "git://github.com/codegouvfr/keycloakify-starter.git"

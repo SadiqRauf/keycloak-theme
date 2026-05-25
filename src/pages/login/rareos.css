@@ -9,12 +9,12 @@ body {
 :root {
     --rareos-bg: #f9fafb;
     --rareos-card: #ffffff;
-    --rareos-blue: #dc2626;
-    --rareos-blue-hover: #dc2626;
+    --rareos-blue: #FF173D;
+    --rareos-blue-hover: #FF173D;
     --rareos-text: #111827;
     --rareos-muted: #6b7280;
     --rareos-border: #e5e7eb;
-    --rareos-link-red: #dc2626;
+    --rareos-link-red: #FF173D;
     --rareos-radius: 12px;
     --rareos-input-radius: 6px;
 }
