@@ -302,7 +302,7 @@ body {
 }
 
 /* Hide “Don’t have an account?” + Sign Up on tablet and mobile */
-@media (max-width: 930px) {
+@media (max-width: 2600px) {
     .rareos-app #kc-info {
         display: none !important;
     }
