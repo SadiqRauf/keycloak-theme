@@ -1,0 +1,424 @@
+/* ─── Beta Agreement Modal ─────────────────────────────────────────────────── */
+
+.bam-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 1rem;
+    animation: bam-fade-in 0.25s ease both;
+}
+
+@keyframes bam-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.bam-shell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 680px;
+    max-height: min(88vh, 780px);
+    background: #fff;
+    border-radius: 16px;
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.18),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    animation: bam-slide-up 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes bam-slide-up {
+    from { transform: translateY(28px) scale(0.97); opacity: 0; }
+    to   { transform: translateY(0)    scale(1);    opacity: 1; }
+}
+
+/* Header */
+.bam-header {
+    padding: 1.5rem 1.75rem 1.25rem;
+    border-bottom: 1px solid #e5e7eb;
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.bam-header-brand {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 0.35rem;
+}
+
+.bam-header-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+.bam-header-sub {
+    margin: 0;
+    font-size: 0.875rem;
+    opacity: 0.82;
+    line-height: 1.4;
+}
+
+/* Progress */
+.bam-progress-track {
+    height: 3px;
+    background: #e5e7eb;
+    flex-shrink: 0;
+}
+
+.bam-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    transition: width 0.1s linear;
+    border-radius: 0 2px 2px 0;
+}
+
+.bam-progress-label {
+    padding: 0.55rem 1.75rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    flex-shrink: 0;
+    min-height: 2.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.bam-progress-done {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #15803d;
+    font-weight: 500;
+}
+
+/* Scrollable body */
+.bam-body {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    padding: 0;
+}
+
+/* Custom scrollbar */
+.bam-body::-webkit-scrollbar { width: 6px; }
+.bam-body::-webkit-scrollbar-track { background: #f3f4f6; }
+.bam-body::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+.bam-body::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+.bam-content {
+    padding: 1.5rem 1.75rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #374151;
+}
+
+.bam-effective {
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    margin: 0 0 1.5rem;
+    font-style: italic;
+}
+
+/* Typography inside agreement */
+.bam-content section {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.bam-content section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.bam-content h2 {
+    margin: 0 0 0.85rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bam-content h2::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: #2563eb;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.bam-content h3 {
+    margin: 1rem 0 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.bam-content p {
+    margin: 0 0 0.75rem;
+}
+
+.bam-content p:last-child {
+    margin-bottom: 0;
+}
+
+.bam-content ul {
+    margin: 0.35rem 0 0.75rem;
+    padding-left: 1.25rem;
+}
+
+.bam-content li {
+    margin-bottom: 0.35rem;
+    line-height: 1.6;
+}
+
+.bam-content dl {
+    margin: 0;
+}
+
+.bam-content dt {
+    font-weight: 600;
+    color: #111827;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+}
+
+.bam-content dt:first-child {
+    margin-top: 0;
+}
+
+.bam-content dd {
+    margin: 0.25rem 0 0 1rem;
+    color: #4b5563;
+}
+
+/* IP assignment highlight */
+.bam-highlight-section {
+    background: #fffbeb;
+    margin-left: -1.75rem;
+    margin-right: -1.75rem;
+    padding-left: 1.75rem !important;
+    padding-right: 1.75rem !important;
+    border-top: 1px solid #fde68a !important;
+    border-bottom: 1px solid #fde68a !important;
+}
+
+.bam-important-notice {
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #92400e;
+    margin-bottom: 1rem;
+}
+
+/* Liability caps */
+.bam-caps-block {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: #374151;
+}
+
+.bam-caps-block p {
+    margin: 0 0 0.65rem;
+}
+
+.bam-caps-block p:last-child {
+    margin-bottom: 0;
+}
+
+/* Attorney notice */
+.bam-attorney-notice {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: #1e40af;
+    font-style: italic;
+    margin-top: 1rem !important;
+}
+
+.bam-bottom-sentinel {
+    height: 1px;
+}
+
+/* Scroll nudge */
+.bam-scroll-nudge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.5rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    flex-shrink: 0;
+    animation: bam-nudge-bounce 2s ease-in-out infinite;
+}
+
+@keyframes bam-nudge-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(2px); }
+}
+
+/* Footer */
+.bam-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem 1.75rem;
+    border-top: 1px solid #e5e7eb;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.bam-btn-decline {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    font-family: inherit;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #6b7280;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bam-btn-decline:hover {
+    background: #f9fafb;
+    color: #374151;
+    border-color: #d1d5db;
+}
+
+.bam-btn-accept {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+
+    /* Locked state */
+    background: #d1d5db;
+    color: #9ca3af;
+}
+
+.bam-btn-accept--ready {
+    background: #2563eb;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+    animation: bam-accept-emerge 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.bam-btn-accept--ready:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+}
+
+.bam-btn-accept--ready:active {
+    transform: translateY(0);
+}
+
+.bam-btn-accept--pulse {
+    animation: bam-shake 0.45s ease;
+}
+
+@keyframes bam-accept-emerge {
+    from { transform: scale(0.93); opacity: 0.6; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes bam-shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-4px); }
+    40%       { transform: translateX(4px); }
+    60%       { transform: translateX(-3px); }
+    80%       { transform: translateX(3px); }
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+    .bam-shell {
+        max-height: 95vh;
+        border-radius: 12px 12px 0 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+    }
+
+    .bam-backdrop {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .bam-header {
+        padding: 1.25rem 1.25rem 1rem;
+    }
+
+    .bam-content {
+        padding: 1.25rem;
+    }
+
+    .bam-highlight-section {
+        margin-left: -1.25rem;
+        margin-right: -1.25rem;
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+    }
+
+    .bam-footer {
+        padding: 0.85rem 1.25rem;
+    }
+
+    .bam-btn-decline {
+        flex: 1;
+    }
+
+    .bam-btn-accept {
+        flex: 2;
+        justify-content: center;
+    }
+}
