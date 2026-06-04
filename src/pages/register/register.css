@@ -63,7 +63,7 @@
 .register-rareos .kcLabelWrapperClass {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     align-items: baseline;
     gap: 0.2rem;
     margin-bottom: 0.35rem;

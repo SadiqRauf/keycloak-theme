@@ -205,8 +205,8 @@ function TermsAcceptance(props: {
     areTermsAccepted: boolean;
     onAreTermsAcceptedValueChange: (v: boolean) => void;
 }) {
-    const { i18n, kcClsx, messagesPerField, areTermsAccepted, onAreTermsAcceptedValueChange } = props;
-    const { msg } = i18n;
+    const { kcClsx, messagesPerField, areTermsAccepted, onAreTermsAcceptedValueChange } = props;
+    // const { msg } = i18n;
 
     return (
         <Fragment>
@@ -228,7 +228,10 @@ function TermsAcceptance(props: {
                         aria-invalid={messagesPerField.existsError("termsAccepted")}
                     />
                     <label htmlFor="termsAccepted" className={kcClsx("kcLabelClass")}>
-                        {msg("acceptTerms")}
+                        By creating an account, you agree to our{" "}
+                        <a href="https://app.rareos.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+                        {" "}and{" "}
+                        <a href="https://app.rareos.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
                     </label>
                 </div>
                 {messagesPerField.existsError("termsAccepted") && (
