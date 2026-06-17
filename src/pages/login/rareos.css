@@ -42,6 +42,15 @@ body {
     text-align: center;
 }
 
+.rareos-subbrand {
+    margin: 0 0 1.75rem;
+    font-size: 3.00rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--rareos-text);
+    text-align: center;
+}
+
 .rareos-footer {
     margin-top: 2rem;
     font-size: 0.8125rem;

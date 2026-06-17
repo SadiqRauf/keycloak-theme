@@ -62,7 +62,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
     return (
         <div className="rareos-app">
-            <p className="rareos-brand">rareOS</p>
+            <p className="rareos-brand">rare<span className="rareos-subbrand">Depot</span></p>
             <KeycloakifyTemplate {...props} />
             <footer className="rareos-footer">
                 <a
