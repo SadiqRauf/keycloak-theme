@@ -256,6 +256,35 @@ body {
     cursor: not-allowed;
 }
 
+/* Generic primary submit inside forms */
+.rareos-app #kc-form-buttons .kcButtonClass,
+.rareos-app #kc-form-buttons input[type="submit"],
+.rareos-app #kc-form-buttons button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: var(--rareos-input-radius);
+    background: var(--rareos-blue);
+    color: #fff;
+    cursor: pointer;
+    margin-top: 0.25rem;
+}
+
+.rareos-app #kc-form-buttons .kcButtonClass:hover:not(:disabled),
+.rareos-app #kc-form-buttons input[type="submit"]:hover:not(:disabled),
+.rareos-app #kc-form-buttons button[type="submit"]:hover:not(:disabled) {
+    background: var(--rareos-blue-hover);
+}
+
+.rareos-app #kc-form-buttons input:disabled,
+.rareos-app #kc-form-buttons button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
 /* Registration block */
 .rareos-app #kc-info {
     position: relative;
@@ -361,4 +390,92 @@ body {
     padding: 0.35rem 0.65rem;
     background: #fff;
     cursor: pointer;
+}
+
+/* ---------------------------------------------------------------
+   Terms and Conditions page (terms.ftl → keycloakify DefaultPage)
+   Markup: #kc-terms-text + form.form-actions > #kc-accept / #kc-decline
+   --------------------------------------------------------------- */
+.rareos-app #kc-terms-text {
+    max-height: 320px;
+    overflow-y: auto;
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--rareos-muted);
+    overscroll-behavior: contain;
+}
+
+.rareos-app #kc-terms-text:empty {
+    display: none;
+}
+
+.rareos-app .form-actions:has(#kc-accept) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.rareos-app #kc-accept,
+.rareos-app #kc-decline {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: 1.25;
+    border-radius: var(--rareos-input-radius);
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+/* Accept — primary */
+.rareos-app #kc-accept {
+    border: 1px solid var(--rareos-blue);
+    background: var(--rareos-blue);
+    color: #fff;
+}
+
+.rareos-app #kc-accept:hover:not(:disabled) {
+    background: var(--rareos-blue-hover);
+    border-color: var(--rareos-blue-hover);
+}
+
+/* Decline — secondary / outline */
+.rareos-app #kc-decline {
+    font-weight: 500;
+    border: 1px solid var(--rareos-border);
+    background: #fff;
+    color: var(--rareos-muted);
+}
+
+.rareos-app #kc-decline:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    color: var(--rareos-text);
+}
+
+.rareos-app #kc-accept:focus-visible,
+.rareos-app #kc-decline:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.25);
+}
+
+.rareos-app #kc-accept:active:not(:disabled),
+.rareos-app #kc-decline:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.rareos-app #kc-accept:disabled,
+.rareos-app #kc-decline:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
 }
