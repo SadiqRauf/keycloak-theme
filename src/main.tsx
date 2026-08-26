@@ -19,7 +19,9 @@ if (import.meta.env.DEV) {
             ? "register.ftl"
             : pageParam === "forgot-password"
               ? "login-reset-password.ftl"
-              : "login.ftl";
+              : pageParam === "terms"
+                ? "terms.ftl"
+                : "login.ftl";
 
     const path = window.location.pathname || "/";
     const registrationUrl = (() => {
