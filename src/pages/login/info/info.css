@@ -1,0 +1,96 @@
+/* Generic info page (info.ftl): matches RareOS card layout (uses global rareos.css variables). */
+
+.rareos-page-info #kc-page-title {
+    text-align: center;
+    width: 100%;
+}
+
+.info-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.info-page__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 1.25rem;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: var(--rareos-blue, #2563eb);
+}
+
+.info-page__icon--error {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.info-page__text {
+    margin: 0;
+    font-size: 0.975rem;
+    line-height: 1.55;
+    color: var(--rareos-text, #111827);
+    overflow-wrap: anywhere;
+}
+
+.info-page__btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background: var(--rareos-blue, #2563eb);
+    border-radius: var(--rareos-input-radius, 10px);
+}
+
+.info-page__btn:hover {
+    background: var(--rareos-blue-hover, #1d4ed8);
+    color: #fff;
+}
+
+/* Shared by the page-expired (login-page-expired.ftl) and error (error.ftl) pages. */
+.rareos-page-login-page-expired #kc-page-title,
+.rareos-page-error #kc-page-title {
+    text-align: center;
+    width: 100%;
+}
+
+.info-page__subtext {
+    margin: 0.35rem 0 0;
+    font-size: 0.975rem;
+    line-height: 1.55;
+    color: #4b5563;
+}
+
+.info-page__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.info-page__actions .info-page__btn {
+    margin-top: 0;
+}
+
+.info-page__btn--secondary {
+    color: var(--rareos-text, #111827);
+    background: #fff;
+    border: 1px solid var(--rareos-border, #e5e7eb);
+}
+
+.info-page__btn--secondary:hover {
+    color: var(--rareos-text, #111827);
+    background: #f9fafb;
+}

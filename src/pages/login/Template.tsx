@@ -61,7 +61,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }, [kcContext]);
 
     return (
-        <div className="rareos-app">
+        <div className={`rareos-app rareos-page-${kcContext.pageId.replace(/\.ftl$/, "")}`}>
             <p className="rareos-brand">rare<span className="rareos-subbrand">Depot</span></p>
             <KeycloakifyTemplate {...props} />
             <footer className="rareos-footer">

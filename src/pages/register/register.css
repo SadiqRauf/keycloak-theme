@@ -206,3 +206,26 @@
 .register-rareos label[for="termsAccepted"] a:hover {
     color: #1d4ed8;
 }
+
+/* Password requirements checklist: full-width row right under the two password fields.
+   The container sits after all profile fields in the DOM, so `order` moves it up visually. */
+.register-rareos > * {
+    order: 3;
+}
+
+.register-rareos > .kcFormGroupClass:has(#firstName),
+.register-rareos > .kcFormGroupClass:has(#lastName),
+.register-rareos > .kcFormGroupClass:has(#username),
+.register-rareos > .kcFormGroupClass:has(#password),
+.register-rareos > .kcFormGroupClass:has(#password-confirm) {
+    order: 1;
+}
+
+.register-rareos > .register-rareos__pw-rules {
+    order: 2;
+    grid-column: 1 / -1;
+}
+
+.register-rareos > .register-rareos__pw-rules:empty {
+    display: none;
+}
