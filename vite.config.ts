@@ -7,7 +7,12 @@ export default defineConfig({
     plugins: [
         react(),
         keycloakify({
-            accountThemeImplementation: "none"
+            accountThemeImplementation: "none",
+            themeName: "raredepot-theme",
+            keycloakVersionTargets: {
+                "22-to-25": "raredepot-theme-kc-22-to-25.jar",
+                "all-other-versions": "raredepot-theme.jar"
+            }
         })
     ]
 });

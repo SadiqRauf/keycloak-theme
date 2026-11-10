@@ -61,6 +61,18 @@ if (import.meta.env.DEV) {
             // Dev mock forces gmail-only email pattern; remove it so normal emails validate.
             ...(pageId === "register.ftl"
                 ? {
+                      // Match the real realm: username field shown, terms acceptance enabled.
+                      // With registrationEmailAsUsername, Keycloakify inserts passwords after email instead of username.
+                      realm: {
+                          displayName: "RareOS",
+                          loginWithEmailAllowed: true,
+                          registrationEmailAsUsername: false,
+                          rememberMe: true,
+                          resetPasswordAllowed: true,
+                          registrationAllowed: true,
+                          password: true
+                      },
+                      termsAcceptanceRequired: true,
                       profile: {
                           attributesByName: {
                               email: {

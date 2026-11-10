@@ -76,7 +76,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     •
                 </span>
                 <a
-                    href="https://app.rareos.com/terms"
+                    href="https://raredepot.com/legal/terms"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -86,7 +86,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     •
                 </span>
                 <a
-                    href="https://app.rareos.com/privacy"
+                    href="https://raredepot.com/legal/privacy"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

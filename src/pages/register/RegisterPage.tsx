@@ -17,7 +17,6 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../../login/KcContext";
 import type { I18n } from "../../login/i18n";
 import { withRareosRegisterFieldOrder } from "./registerFieldOrder";
-import BetaAgreementModal from "./BetaAgreementModal";
 import "./register.css";
 
 type Props = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n> & {
@@ -52,7 +51,6 @@ export default function RegisterPage(props: Props) {
     const { msg, msgStr, advancedMsg } = i18n;
     const [isFormSubmittable, setIsFormSubmittable] = useState(false);
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
-    // const [showAgreementModal, setShowAgreementModal] = useState(true);
 
     /** Profile with RareOS field order; always applied when `attributesByName` is non-empty (avoids staging vs local key mismatches). */
     const registerFormKcContext = useMemo(() => withRareosRegisterFieldOrder(kcContext), [kcContext]);
@@ -105,16 +103,6 @@ export default function RegisterPage(props: Props) {
             displayMessage={messagesPerField.exists("global")}
             displayRequiredFields={false}
         >
-            { termsAcceptanceRequired && !areTermsAccepted && (
-                <BetaAgreementModal
-                    onAccept={() => {
-                        setAreTermsAccepted(true);
-                    }}
-                    onDecline={() => {
-                        window.location.href = url.loginUrl;
-                    }}
-                />
-            )}
             <form
                 id="kc-register-form"
                 className={clsx(kcClsx("kcFormClass"), "register-rareos")}
@@ -229,9 +217,9 @@ function TermsAcceptance(props: {
                     />
                     <label htmlFor="termsAccepted" className={kcClsx("kcLabelClass")}>
                         By creating an account, you agree to our{" "}
-                        <a href="https://app.rareos.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+                        <a href="https://raredepot.com/legal/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
                         {" "}and{" "}
-                        <a href="https://app.rareos.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+                        <a href="https://raredepot.com/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
                     </label>
                 </div>
                 {messagesPerField.existsError("termsAccepted") && (
