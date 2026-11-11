@@ -9,10 +9,10 @@
   To add or change a client: edit `clientBrands` below. Unknown or missing client -> defaultBrand.
 -->
 
-<#-- Keycloak client ID -> brand key. TODO: replace the placeholder client IDs with the real ones. -->
+<#-- Keycloak client ID -> brand key. Same client IDs in the rare, rare-stage and rare-dev realms. -->
 <#assign clientBrands = {
-    "REPLACE_WITH_RAREDEPOT_CLIENT_ID": "raredepot",
-    "REPLACE_WITH_RAREOS_CLIENT_ID": "rareos"
+    "raredepot-frontend": "raredepot",
+    "rareos-frontend": "rareos"
 }>
 
 <#-- Used when the link has no client_id or it isn't listed above (e.g. some admin-triggered emails). -->
