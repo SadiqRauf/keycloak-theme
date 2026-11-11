@@ -7,6 +7,7 @@ import {
     type FormEvent,
     type ReactNode
 } from "react";
+import { createPortal } from "react-dom";
 import { clsx } from "keycloakify/tools/clsx";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { getKcClsx } from "keycloakify/login/lib/kcClsx";
@@ -18,6 +19,8 @@ import type { KcContext } from "../../login/KcContext";
 import type { I18n } from "../../login/i18n";
 import { withRareosRegisterFieldOrder } from "./registerFieldOrder";
 import BetaAgreementModal from "./BetaAgreementModal";
+import { withRareosPasswordDefaults, evaluatePassword } from "../shared/password/passwordRules";
+import { PasswordChecklist } from "../shared/password/PasswordChecklist";
 import "./register.css";
 
 type Props = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n> & {
@@ -55,7 +58,26 @@ export default function RegisterPage(props: Props) {
     // const [showAgreementModal, setShowAgreementModal] = useState(true);
 
     /** Profile with RareOS field order; always applied when `attributesByName` is non-empty (avoids staging vs local key mismatches). */
-    const registerFormKcContext = useMemo(() => withRareosRegisterFieldOrder(kcContext), [kcContext]);
+    // Also merges the RareOS strong-password baseline into the realm policy, so Keycloakify validates it client-side.
+    const registerFormKcContext = useMemo(() => {
+        const ordered = withRareosRegisterFieldOrder(kcContext);
+        return { ...ordered, passwordPolicies: withRareosPasswordDefaults(ordered.passwordPolicies) };
+    }, [kcContext]);
+
+    const [pwRulesEl, setPwRulesEl] = useState<HTMLDivElement | null>(null);
+    const PasswordRulesAfterField = useCallback(
+        ({ attribute, valueOrValues }: { attribute: { name: string }; valueOrValues: string | string[] }) => {
+            if (attribute.name !== "password" || pwRulesEl === null) return null;
+            const fieldValue = (id: string) => (document.getElementById(id) as HTMLInputElement | null)?.value ?? "";
+            const rules = evaluatePassword(
+                typeof valueOrValues === "string" ? valueOrValues : "",
+                registerFormKcContext.passwordPolicies ?? {},
+                { username: fieldValue("username"), email: fieldValue("email") }
+            );
+            return createPortal(<PasswordChecklist rules={rules} id="password-requirements" />, pwRulesEl);
+        },
+        [pwRulesEl, registerFormKcContext]
+    );
 
     const handleFormSubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
@@ -128,7 +150,10 @@ export default function RegisterPage(props: Props) {
                     kcClsx={kcClsx}
                     onIsFormSubmittableValueChange={setIsFormSubmittable}
                     doMakeUserConfirmPassword={doMakeUserConfirmPassword}
+                    AfterField={PasswordRulesAfterField}
                 />
+                {/* Full-width row under both password fields; filled via portal from PasswordRulesAfterField. */}
+                <div className="register-rareos__pw-rules" ref={setPwRulesEl} />
                 {termsAcceptanceRequired && (
                     <TermsAcceptance
                         i18n={i18n}

@@ -7,7 +7,11 @@ export default defineConfig({
     plugins: [
         react(),
         keycloakify({
-            accountThemeImplementation: "none"
+            accountThemeImplementation: "none",
+            keycloakVersionTargets: {
+                "22-to-25": "rareos-kc-22-to-25.jar",
+                "all-other-versions": "rareos.jar"
+            }
         })
     ]
 });

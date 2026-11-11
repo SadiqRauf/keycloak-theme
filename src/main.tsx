@@ -14,14 +14,17 @@ if (import.meta.env.DEV) {
     // Use ?page=register | ?page=login to switch mocks in the browser (full navigation).
     const params = new URLSearchParams(window.location.search);
     const pageParam = params.get("page");
-    const pageId =
-        pageParam === "register"
-            ? "register.ftl"
-            : pageParam === "forgot-password"
-              ? "login-reset-password.ftl"
-              : pageParam === "terms"
-                ? "terms.ftl"
-                : "login.ftl";
+    const pageIdByParam: Record<string, KcContext["pageId"]> = {
+        register: "register.ftl",
+        "forgot-password": "login-reset-password.ftl",
+        "verify-email": "login-verify-email.ftl",
+        info: "info.ftl",
+        "update-password": "login-update-password.ftl",
+        "page-expired": "login-page-expired.ftl",
+        error: "error.ftl",
+        terms: "terms.ftl"
+    };
+    const pageId = (pageParam && pageIdByParam[pageParam]) || "login.ftl";
 
     const path = window.location.pathname || "/";
     const registrationUrl = (() => {
@@ -43,7 +46,13 @@ if (import.meta.env.DEV) {
         return q ? `${path}?${q}` : `${path}?page=forgot-password`;
     })();
 
-    let kcContext = getKcContextMock({
+    // pageId is chosen at runtime, so use a loose signature (overrides differ per page).
+    const getMock = getKcContextMock as (params: {
+        pageId: KcContext["pageId"];
+        overrides?: Record<string, unknown>;
+    }) => KcContext;
+
+    let kcContext = getMock({
         pageId,
         overrides: {
             realm: {
@@ -61,6 +70,47 @@ if (import.meta.env.DEV) {
                 loginResetCredentialsUrl: forgotPasswordUrl
             },
             // Dev mock forces gmail-only email pattern; remove it so normal emails validate.
+            // Mimics the page Keycloak shows when an email verification link is opened.
+            ...(pageId === "error.ftl"
+                ? {
+                      message: {
+                          type: "error",
+                          summary: "Cookie not found. Please make sure cookies are enabled in your browser."
+                      },
+                      client: { baseUrl: loginUrl }
+                  }
+                : {}),
+            // ?page=info&variant=account-updated: the "Account updated" page that comes with no link from Keycloak.
+            ...(pageId === "info.ftl" && params.get("variant") === "account-updated"
+                ? {
+                      messageHeader: "Account updated",
+                      message: { type: "success", summary: "Your account has been updated." },
+                      actionUri: undefined,
+                      pageRedirectUri: undefined,
+                      skipLink: true,
+                      client: { baseUrl: undefined },
+                      url: { loginUrl }
+                  }
+                : {}),
+            ...(pageId === "info.ftl" && params.get("variant") !== "account-updated"
+                ? {
+                      messageHeader: "Email address validation",
+                      message: { type: "info", summary: "Confirm validity of e-mail address john.doe@gmail.com." },
+                      actionUri: "#",
+                      skipLink: false
+                  }
+                : {}),
+            ...(pageId === "login-verify-email.ftl" || pageId === "login-update-password.ftl"
+                ? {
+                      message: {
+                          type: "warning",
+                          summary:
+                              pageId === "login-verify-email.ftl"
+                                  ? "You need to verify your email address to activate your account."
+                                  : "You need to change your password to activate your account."
+                      }
+                  }
+                : {}),
             ...(pageId === "register.ftl"
                 ? {
                       profile: {
