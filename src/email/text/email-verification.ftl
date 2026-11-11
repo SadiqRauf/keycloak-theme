@@ -1,14 +1,16 @@
 <#ftl output_format="plainText">
+<#import "/brand.ftl" as brandCfg>
+<#assign brand = brandCfg.forLink(link)>
 Verify your email
 
 Hi${(user.firstName)?has_content?then(" " + user.firstName, "")},
 
-Thanks for signing up for rareDepot. Please confirm your email address to activate your account:
+Thanks for signing up for ${brand.name}. Please confirm your email address to activate your account:
 
 ${link}
 
 This link expires in ${linkExpirationFormatter(linkExpiration)}.
 
-If you didn't create a rareDepot account, you can safely ignore this email.
+If you didn't create a ${brand.name} account, you can safely ignore this email.
 
-rareDepot by rareOS
+${brand.signoff}
