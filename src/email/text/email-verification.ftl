@@ -5,7 +5,7 @@ Verify your email
 
 Hi${(user.firstName)?has_content?then(" " + user.firstName, "")},
 
-Thanks for signing up for ${brand.name}. Please confirm your email address to activate your account:
+Please confirm your email address to activate your account.
 
 ${link}
 
