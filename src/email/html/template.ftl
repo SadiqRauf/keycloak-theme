@@ -6,8 +6,8 @@
 <#import "/brand.ftl" as brandCfg>
 <#assign c = brandCfg.colors>
 
-<#-- `brand` defaults to the brand of the client in `link`, so callers can omit it. -->
-<#macro emailLayout brand=brandCfg.forLink(link!"")>
+<#-- `brand` defaults to the client in `link` (or on `event` for security alerts), so callers can omit it. -->
+<#macro emailLayout brand=brandCfg.forEmail(link!"", event!{})>
 <!DOCTYPE html>
 <html lang="en">
 <head>
