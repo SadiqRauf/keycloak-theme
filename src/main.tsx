@@ -113,6 +113,8 @@ if (import.meta.env.DEV) {
                 : {}),
             ...(pageId === "register.ftl"
                 ? {
+                      // Match staging: Terms/Privacy checkbox gates the Create Account button.
+                      termsAcceptanceRequired: true,
                       profile: {
                           attributesByName: {
                               email: {
